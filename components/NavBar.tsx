@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { SignInButton, SignOutButton } from "./AuthButtons";
 
 const NavBar = () => {
   return (
@@ -16,6 +17,12 @@ const NavBar = () => {
         </li>
         <li>
             <Link href={"/users"}>Users</Link>
+        </li>
+        <li>
+          <SignInButton />
+        </li>
+        <li>
+          <SignOutButton />
         </li>
       </ul>
     </nav>
