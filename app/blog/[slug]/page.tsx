@@ -1,3 +1,5 @@
+import { Metadata } from "next";
+
 export const revalidate = 420 // Seconds between revalidation
 
 export interface Post {
@@ -8,6 +10,17 @@ export interface Post {
 
 interface Props {
   params: { slug: string };
+}
+
+// To use dynamic metadata
+const generateMetadata = async ({params}: Props): Promise<Metadata> => {
+  const posts: Post[] = await fetch("http://localhost:3000/api/content").then(
+    (res) => res.json()
+  );
+  const post = posts.find((post) => post.slug === params.slug)!;
+  return {
+    title: post.title
+  }
 }
 
 // To use static generation, for dynamic content that doesn't change often
@@ -34,4 +47,4 @@ const BlogPostPage = async ({ params }: Props) => {
 };
 
 export default BlogPostPage;
-export { generateStaticParams };
+export { generateStaticParams, generateMetadata };
