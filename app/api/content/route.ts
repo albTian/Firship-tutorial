@@ -31,11 +31,14 @@ const posts = [
   },
 ];
 
+import { getServerSession } from "next-auth";
 import { NextResponse } from "next/server";
 
 // These API endpoints run on the server, so we can put sensitive information here without worry.
-// 
+//
 
 export async function GET() {
-    return NextResponse.json(posts)
+  const session = await getServerSession();
+  
+  return NextResponse.json(posts);
 }
