@@ -2,7 +2,7 @@ import Link from "next/link";
 import { Post } from "./[slug]/page";
 
 const BlogPage = async () => {
-  const posts: Post[] = await fetch(`${process.env.NEXTAUTH_URL}api/content`).then(
+  const posts: Post[] = await fetch(`${process.env.NEXTAUTH_URL}/api/content`).then(
     (res) => res.json()
   );
   return (
