@@ -14,7 +14,7 @@ interface Props {
 
 // To use dynamic metadata
 const generateMetadata = async ({params}: Props): Promise<Metadata> => {
-  const posts: Post[] = await fetch("http://localhost:3000/api/content").then(
+  const posts: Post[] = await fetch(process.env.NEXTAUTH_URL!).then(
     (res) => res.json()
   );
   const post = posts.find((post) => post.slug === params.slug)!;
@@ -25,7 +25,7 @@ const generateMetadata = async ({params}: Props): Promise<Metadata> => {
 
 // To use static generation, for dynamic content that doesn't change often
 const generateStaticParams = async () => {
-  const posts: Post[] = await fetch("http://localhost:3000/api/content").then(
+  const posts: Post[] = await fetch(process.env.NEXTAUTH_URL!).then(
     (res) => res.json()
   );
   return posts.map((post) => ({
@@ -34,7 +34,7 @@ const generateStaticParams = async () => {
 };
 
 const BlogPostPage = async ({ params }: Props) => {
-  const posts: Post[] = await fetch("http://localhost:3000/api/content").then(
+  const posts: Post[] = await fetch(process.env.NEXTAUTH_URL!).then(
     (res) => res.json()
   );
   const post = posts.find((post) => post.slug === params.slug)!;
