@@ -11,9 +11,6 @@ export default async function FollowButton({ targetUserId }: Props) {
   const session = await getServerSession(authOptions);      // NEEDS AUTHOPTIONS
   const currentUserEmail = session?.user?.email!
 
-  console.log("------------session------------")
-  console.log(session)
-
   const currentUserId = await prisma.user
     .findUnique({ where: { email: currentUserEmail } })
     .then((user) => user?.id!);

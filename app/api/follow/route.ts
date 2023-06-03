@@ -8,6 +8,12 @@ const PUT = async (req: Request) => {
   const currentUserEmail = session?.user?.email!;
   const { targetUserId } = await req.json();
 
+  console.log('currentUserEmail')
+  console.log(currentUserEmail)
+
+  console.log('targetUserId')
+  console.log(targetUserId)
+
   const currentUserId = await prisma.user
     .findUnique({ where: { email: currentUserEmail } })
     .then((user) => user?.id!);
@@ -18,10 +24,11 @@ const PUT = async (req: Request) => {
       followingId: targetUserId,
     },
   });
+  return NextResponse.json(record)
 };
 
 const DELETE = async (req: NextRequest) => {
-  const session = await getServerSession();
+  const session = await getServerSession(authOptions);
   const currentUserEmail = session?.user?.email!;
   const targetUserId = req.nextUrl.searchParams.get("targetUserId");
 

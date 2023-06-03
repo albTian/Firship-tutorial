@@ -21,22 +21,24 @@ export default async function UserProfile({ params }: Props) {
   const { name, bio, image, id } = user ?? {};
 
   return (
-    <div>
-      <h1>{name}</h1>
+    <div className="p-4 bg-gray-100 rounded shadow-lg">
+      <h1 className="text-4xl font-bold text-gray-800">{name}</h1>
 
-      <Image
-        width={300}
-        height={300}
-        src={image ?? '/mememan.webp'}
-        alt={`${name}'s profile`}
-      />
+      <div className="my-6">
+        <Image
+          width={300}
+          height={300}
+          className="rounded-full"
+          src={image ?? '/mememan.webp'}
+          alt={`${name}'s profile`}
+        />
+      </div>
 
-      <h3>Bio</h3>
-      <p>{bio}</p>
+      <h3 className="text-2xl font-semibold text-gray-700">Bio</h3>
+      <p className="mt-2 text-gray-600">{bio}</p>
 
       {/* @ts-expect-error Server Component */}
       <FollowButton targetUserId={id || ""} />
-
     </div>
   );
 }

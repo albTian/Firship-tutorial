@@ -17,7 +17,7 @@ export default function FollowClient({ targetUserId, isFollowing }: Props) {
         setIsFetching(true);
 
         const res = await fetch('/api/follow', {
-            method: 'POST',
+            method: 'PUT',
             body: JSON.stringify({ targetUserId }),
             headers: {
                 'Content-Type': 'application/json'
@@ -51,16 +51,18 @@ export default function FollowClient({ targetUserId, isFollowing }: Props) {
         startTransition(() =>  router.refresh() );
     }
 
+    const buttonClassname = `py-2 px-4 mt-4 text-white rounded-lg transition-colors duration-200 ${!isMutating ? 'bg-red-600 hover:bg-red-700' : 'bg-gray-600 cursor-not-allowed'}`
+
     if (isFollowing) {
         return (
-            <button onClick={unfollow}>
+            <button onClick={unfollow} className={buttonClassname}>
                 {!isMutating ? 'Unfollow' : '...'}
             </button>
         )
 
     } else {
         return (
-            <button onClick={follow}>
+            <button onClick={follow} className={buttonClassname}>
                 {!isMutating ? 'Follow' : '...'}
             </button>
         )

@@ -9,17 +9,17 @@ interface Props {
 
 export default function UserCard({ id, name, age, image }: Props) {
   return (
-    <div className={""}>
+    <div className="rounded-lg shadow-lg overflow-hidden bg-white">
       <img
         src={image ?? '/mememan.webp'}
         alt={`${name}'s profile`}
-        className={""}
+        className="w-full h-56 object-cover"
       />
-      <div className={""}>
-        <h3>
-          <Link href={`/users/${id}`}>{name}</Link>
+      <div className="p-4">
+        <h3 className="text-lg font-semibold">
+          <Link href={`/users/${id}`} className="text-blue-500 hover:underline">{name}</Link>
         </h3>
-        <p>Age: {age}</p>
+        <p className="mt-2">Age: {age}</p>
       </div>
     </div>
   );
