@@ -1,10 +1,10 @@
 import { prisma } from "@/lib/prisma";
 import { NextResponse } from "next/server";
 
-export const GET = async (request: Request) => {
-    const users = await prisma.user.findMany()
+const GET = async () => {
+  // const users = await prisma.user.findMany();
 
-    console.log(users)
+  return NextResponse.json([]);
+};
 
-    return NextResponse.json(users)
-}
+export { GET };
