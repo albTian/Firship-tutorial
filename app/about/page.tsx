@@ -11,7 +11,7 @@ const AboutPage = async () => {
     return (
         <main>
             <h1>About</h1>
-            <p>One thing about me I'm the baddest alive</p>
+            <p>One thing about me Im the baddest alive</p>
         </main>
     )
 }

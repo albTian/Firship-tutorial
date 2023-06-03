@@ -10,7 +10,7 @@ const BlogPage = async () => {
         <ul>
 
         {posts.map((post) => (
-            <li>
+            <li key={post.slug}>
                 <Link href={`blog/${post.slug}`}>{post.title}</Link>
             </li>
         ))}
